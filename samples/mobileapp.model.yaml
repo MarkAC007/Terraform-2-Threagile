@@ -1,0 +1,79 @@
+assets:
+  - name: Mobile Health App
+    description: Provides telehealth services and patient management.
+    owner: Health App Team
+    technology: Hybrid (iOS and Android)
+    classification: Confidential
+
+components:
+  - name: API Gateway
+    description: Manages secure API traffic for health data exchange.
+    technology: Amazon API Gateway
+    classification: Critical
+    communication:
+      - to: Kubernetes Cluster
+        protocol: HTTPS
+        data: API requests/responses
+
+  - name: Kubernetes Cluster
+    description: Orchestrates containerized application services ensuring high availability and scalability.
+    technology: Amazon EKS
+    classification: Critical
+    communication:
+      - to: Patient Data Database
+        protocol: HTTPS
+        data: Database queries
+      - to: Content Delivery
+        protocol: HTTPS
+        data: Static content requests
+
+data_assets:
+  - name: Patient Data Database
+    description: Stores patient profiles, health records, and appointment history.
+    technology: Amazon DynamoDB
+    classification: Confidential
+
+technical_assets:
+  - name: Content Delivery
+    description: Distributes medical content and application resources efficiently.
+    technology: Amazon CloudFront
+    classification: Important
+
+  - name: Authentication Service
+    description: Manages user authentication and identity verification.
+    technology: AWS Cognito
+    classification: Critical
+
+  - name: Logging and Monitoring
+    description: Monitors system health and tracks security events.
+    technology: AWS CloudWatch
+    classification: Important
+
+services:
+  - name: Disaster Recovery
+    description: Ensures system resilience and data protection across regions.
+    technology: Cross-Region DynamoDB Replication
+    classification: Critical
+
+  - name: External Integrations
+    description: Connects with external health systems and insurance services.
+    protocol: RESTful APIs / HL7
+    classification: Important
+
+  - name: Compliance and Security Policies
+    description: Adheres to HIPAA standards for data security and privacy.
+    measures: Data encryption, regular security assessments, compliance audits
+    classification: Mandatory
+
+external_providers:
+  - name: Cloudflare
+    service: Enhanced security and performance services
+    description: Provides additional layers of security and optimizes content delivery.
+    classification: Critical
+
+risks:
+  - name: Data Breach
+    likelihood: Medium
+    impact: High
+    rationale: High sensitivity of health data and associated privacy risks.
+    mitigation_steps: Implement encryption, multi-factor authentication, and regular security audits.
